@@ -1,1 +1,1 @@
-export { Body, Textarea } from './components';
+export { Body, Textarea, Header } from './components';

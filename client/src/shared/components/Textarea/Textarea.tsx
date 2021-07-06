@@ -1,7 +1,8 @@
 import React from 'react';
+import { TextareaWrapper } from './style';
 
-const Textarea = () => {
-	return <div>Textarea</div>;
+const Textarea = (): JSX.Element => {
+	return <TextareaWrapper>Textarea</TextareaWrapper>;
 };
 
 export default Textarea;

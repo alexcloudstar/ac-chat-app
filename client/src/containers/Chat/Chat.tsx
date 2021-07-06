@@ -1,12 +1,14 @@
 import React from 'react';
-import { Body, Textarea } from 'src/shared';
+import { ChatWrapper } from './style';
+import { Body, Header, Textarea } from 'src/shared';
 
-const Chat = () => {
+const Chat = (): JSX.Element => {
 	return (
-		<>
+		<ChatWrapper>
+			<Header />
 			<Body />
 			<Textarea />
-		</>
+		</ChatWrapper>
 	);
 };
 

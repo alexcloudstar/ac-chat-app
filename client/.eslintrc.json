@@ -17,7 +17,6 @@
 	],
 	"parserOptions": {
 		"project": ["tsconfig.json"],
-		"tsconfigRootDir": "./client",
 		"ecmaVersion": 2020,
 		"sourceType": "module",
 		"ecmaFeatures": {

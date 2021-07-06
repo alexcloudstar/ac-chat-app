@@ -1,7 +1,8 @@
 import React from 'react';
+import { BodyWrapper } from './style';
 
-const Body = () => {
-	return <div>Chat body</div>;
+const Body = (): JSX.Element => {
+	return <BodyWrapper>Chat body</BodyWrapper>;
 };
 
 export default Body;
