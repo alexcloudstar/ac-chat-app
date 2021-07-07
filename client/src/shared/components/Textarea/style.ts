@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 export const TextareaWrapper = styled.div`
-	background-color: orange;
+	height: 100%;
 	width: 100%;
-	height: 20%;
+
+	textarea {
+		resize: none;
+		height: calc(100% - 6px) !important;
+		width: calc(100% - 6px) !important;
+	}
 `;
