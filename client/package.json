@@ -4,7 +4,8 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"start": "webpack-cli serve --mode=development --env development --open --hot",
+		"start": "webpack-cli serve --mode=development --env development --open",
+		"start:dev": "webpack-cli serve --mode=development --env development --open --hot --host 192.168.1.111",
 		"build": "webpack --mode=production --env production --progress",
 		"lint": "eslint './src/**/*.{ts,tsx}'",
 		"lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
