@@ -4,7 +4,8 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"start": "webpack-cli serve --mode=development --env development --open --hot",
+		"start": "webpack-cli serve --mode=development --env development --open",
+		"start:dev": "webpack-cli serve --mode=development --env development --open --hot --host 192.168.1.111",
 		"build": "webpack --mode=production --env production --progress",
 		"lint": "eslint './src/**/*.{ts,tsx}'",
 		"lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
@@ -38,8 +39,10 @@
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.12.0",
+		"@material-ui/icons": "^4.11.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"socket.io-client": "^4.1.2",
 		"styled-components": "^5.3.0"
 	}
 }
