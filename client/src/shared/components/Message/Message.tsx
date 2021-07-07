@@ -4,7 +4,7 @@ import { MessageProps } from './types';
 
 const Message: FC<MessageProps> = ({ username, message }): JSX.Element => {
 	return (
-		<MessageWrapper>
+		<MessageWrapper username={username}>
 			<p>
 				{username}: {message}
 			</p>

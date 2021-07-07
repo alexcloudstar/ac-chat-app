@@ -7,6 +7,7 @@ import { FooterWrapper } from './style';
 import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { Textarea } from 'src/shared';
+import { getLocalStorageItem } from 'src/utils/localStorage';
 
 const socket = io('http://localhost:4000');
 
@@ -19,8 +20,10 @@ const Footer: FC<FooterProps> = ({
 	const onClickHandler = () => {
 		socket.emit('chat', {
 			message,
-			username: 'alexcloudstar'
+			username: getLocalStorageItem('username')
 		});
+
+		setMessage('');
 	};
 
 	socket.on('chat', (data) => {
