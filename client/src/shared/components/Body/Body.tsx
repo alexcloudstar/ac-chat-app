@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { FC } from 'react';
 import { BodyWrapper } from './style';
+import { BodyProps } from './types';
 
-const Body = ({ messages }): JSX.Element => {
+const Body: FC<BodyProps> = ({ messageState }): JSX.Element => {
 	return (
 		<BodyWrapper>
-			{messages.length > 0 &&
-				messages.map((message) => (
-					<>
+			{messageState.length > 0 &&
+				messageState.map((message) => (
+					<Fragment key={message.message}>
 						<div>
 							<p>
 								username: <i>{message.username}</i>
@@ -15,7 +17,7 @@ const Body = ({ messages }): JSX.Element => {
 								message: <i>{message.message}</i>
 							</p>
 						</div>
-					</>
+					</Fragment>
 				))}
 		</BodyWrapper>
 	);

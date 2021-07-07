@@ -1,20 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { TextareaWrapper } from './style';
 import { TextareaAutosize } from '@material-ui/core';
-import { useState } from 'react';
 
-const Textarea = ({
-	messages,
-	setMessages,
-	message,
-	setMessage
-}): JSX.Element => {
+import { textareaProps } from './types';
+
+const Textarea: FC<textareaProps> = ({ message, setMessage }): JSX.Element => {
 	const onChangeHandler = (e) => {
 		setMessage(e.target.value);
-		setMessages(...messages, {
-			username: 'AlexCloudstar',
-			message
-		});
 	};
 
 	return (
