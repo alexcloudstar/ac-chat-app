@@ -8,7 +8,7 @@ const Chat = (): JSX.Element => {
 
 	return (
 		<ChatWrapper>
-			<Header />
+			<Header headline="Chat Header" />
 			<Body messageState={messages} />
 			<Footer
 				messages={messages}

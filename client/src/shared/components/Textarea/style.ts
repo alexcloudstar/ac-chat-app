@@ -6,7 +6,10 @@ export const TextareaWrapper = styled.div`
 
 	textarea {
 		resize: none;
-		height: calc(100% - 6px) !important;
-		width: calc(100% - 6px) !important;
+		height: 100% !important;
+		width: 100%;
+		border: none;
+		outline: none;
+		padding: 5px 10px;
 	}
 `;
