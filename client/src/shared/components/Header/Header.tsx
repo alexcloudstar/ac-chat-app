@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { HeaderWrapper } from './style';
+import { HeaderProps } from './types';
 
-const Header = (): JSX.Element => {
-	return <HeaderWrapper>Chat Header</HeaderWrapper>;
+const Header: FC<HeaderProps> = ({ headline }): JSX.Element => {
+	return (
+		<HeaderWrapper>
+			<span>{headline}</span>
+		</HeaderWrapper>
+	);
 };
 
 export default Header;
