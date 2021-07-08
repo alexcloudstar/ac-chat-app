@@ -4,7 +4,7 @@ import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { Message } from '../Message';
 
-const Body: FC<BodyProps> = ({ messageState }): JSX.Element => {
+const Body: FC<BodyProps> = ({ messageState, isTyping }): JSX.Element => {
 	return (
 		<BodyWrapper>
 			{messageState.length > 0 &&
@@ -18,6 +18,12 @@ const Body: FC<BodyProps> = ({ messageState }): JSX.Element => {
 						</Fragment>
 					)
 				)}
+
+			{isTyping.isTyping ? (
+				<Message username={isTyping.username} message={'is typing...'} />
+			) : (
+				<></>
+			)}
 		</BodyWrapper>
 	);
 };

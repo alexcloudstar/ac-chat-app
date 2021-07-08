@@ -1,3 +1,5 @@
 import { messageType } from 'src/shared/types/messagesTypes';
 
-export type textareaProps = messageType;
+export type textareaProps = {
+	onKeyPressHandler: () => void;
+} & messageType;

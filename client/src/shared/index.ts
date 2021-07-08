@@ -1,2 +1,2 @@
-export { Body, Textarea, Header, Footer, Message } from './components';
+export { Body, Textarea, Header, Footer, Message, Avatar } from './components';
 export { messageStateType, messagesStateType } from './types';

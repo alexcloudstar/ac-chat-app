@@ -3,7 +3,10 @@ import { UsernameWrapper } from './style';
 import { UsernameProps } from './types';
 import { TextField, InputAdornment } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
-import { setLocalStorageItem } from 'src/utils/localStorage';
+import {
+	getLocalStorageItem,
+	setLocalStorageItem
+} from 'src/utils/localStorage';
 
 const Username: FC<UsernameProps> = (): JSX.Element => {
 	const [username, setUsername] = useState<string>('');
@@ -17,9 +20,9 @@ const Username: FC<UsernameProps> = (): JSX.Element => {
 		<UsernameWrapper>
 			<TextField
 				id="input-with-icon-textfield"
-				label="username"
+				placeholder="Type your username"
 				onChange={onChangeHandler}
-				value={username}
+				value={getLocalStorageItem('username') || username}
 				InputProps={{
 					startAdornment: (
 						<InputAdornment position="start">

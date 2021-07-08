@@ -9,35 +9,27 @@ import SendIcon from '@material-ui/icons/Send';
 import { Textarea } from 'src/shared';
 import { getLocalStorageItem } from 'src/utils/localStorage';
 
-const socket = io('http://localhost:4000');
-
 const Footer: FC<FooterProps> = ({
 	messages,
 	setMessages,
 	message,
-	setMessage
+	setMessage,
+	onClickHandler,
+	onKeyPressHandler
 }): JSX.Element => {
-	const onClickHandler = () => {
-		socket.emit('chat', {
-			message,
-			username: getLocalStorageItem('username')
-		});
-
-		setMessage('');
-	};
-
-	socket.on('chat', (data) => {
-		setMessages([...messages, data]);
-	});
-
 	return (
 		<FooterWrapper>
-			<Textarea message={message} setMessage={setMessage} />
+			<Textarea
+				message={message}
+				setMessage={setMessage}
+				onKeyPressHandler={onKeyPressHandler}
+			/>
 			<Button
 				variant="contained"
 				color="primary"
 				endIcon={<SendIcon />}
 				onClick={onClickHandler}
+				disabled={!message}
 			>
 				Send
 			</Button>
