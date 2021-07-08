@@ -4,7 +4,11 @@ import { TextareaAutosize } from '@material-ui/core';
 
 import { textareaProps } from './types';
 
-const Textarea: FC<textareaProps> = ({ message, setMessage }): JSX.Element => {
+const Textarea: FC<textareaProps> = ({
+	message,
+	setMessage,
+	onKeyPressHandler
+}): JSX.Element => {
 	const onChangeHandler = (e) => {
 		setMessage(e.target.value);
 	};
@@ -17,6 +21,7 @@ const Textarea: FC<textareaProps> = ({ message, setMessage }): JSX.Element => {
 				placeholder="Type your message here..."
 				value={message}
 				onChange={onChangeHandler}
+				onKeyPress={onKeyPressHandler}
 			/>
 		</TextareaWrapper>
 	);

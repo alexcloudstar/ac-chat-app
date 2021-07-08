@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
 import { MessageWrapper } from './styles';
 import { MessageProps } from './types';
+import { Avatar } from 'src/shared';
 
 const Message: FC<MessageProps> = ({ username, message }): JSX.Element => {
 	return (
 		<MessageWrapper username={username}>
-			<p>
-				{username}: {message}
-			</p>
+			<div>
+				<Avatar username={username} />
+				<p>
+					<span>{!username ? 'Guest' : username}</span>: {message}
+				</p>
+			</div>
 		</MessageWrapper>
 	);
 };
