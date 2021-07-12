@@ -1,4 +1,4 @@
-import { messageStateType } from 'src/shared';
+import { messageStateType, profanityWords } from 'src/shared';
 
 export type BodyProps = {
 	isTyping: {
@@ -8,4 +8,4 @@ export type BodyProps = {
 	messageState: messageStateType[] | unknown[];
 	message: string;
 	setMessage: React.Dispatch<React.SetStateAction<string>>;
-};
+} & profanityWords;

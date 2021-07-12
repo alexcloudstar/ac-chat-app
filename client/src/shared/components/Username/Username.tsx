@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { UsernameWrapper } from './style';
 import { UsernameProps } from './types';
 import { TextField, InputAdornment } from '@material-ui/core';
@@ -35,4 +35,4 @@ const Username: FC<UsernameProps> = (): JSX.Element => {
 	);
 };
 
-export default Username;
+export default memo(Username);

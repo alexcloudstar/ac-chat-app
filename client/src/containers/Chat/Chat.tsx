@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ChatWrapper } from './style';
 import { Body, Header, Footer, messagesStateType } from 'src/shared';
 import { io } from 'socket.io-client';
 import { getLocalStorageItem } from 'src/utils/localStorage';
+import { profanityWords } from 'src/shared';
 
 const socket = io('http://localhost:4000');
 
-const Chat = (): JSX.Element => {
+const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
 	const [messages, setMessages] = useState<messagesStateType[]>([]);
 	const [isTyping, setIsTyping] = useState<{
@@ -27,14 +28,18 @@ const Chat = (): JSX.Element => {
 		socket.emit('typing', getLocalStorageItem('username'));
 	};
 
-	socket.on('chat', (data) => {
-		setMessages([...messages, data]);
-		setIsTyping({ isTyping: false });
-	});
+	useMemo(() => {
+		socket.on('chat', (data) => {
+			setMessages([...messages, data]);
+			setIsTyping({ isTyping: false });
+		});
+	}, [messages]);
 
-	socket.on('typing', (data) => {
-		setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
-	});
+	useMemo(() => {
+		socket.on('typing', (data) => {
+			setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
+		});
+	}, []);
 
 	return (
 		<ChatWrapper>
@@ -44,6 +49,7 @@ const Chat = (): JSX.Element => {
 				isTyping={isTyping}
 				message={message}
 				setMessage={setMessage}
+				profanityWords={profanityWords}
 			/>
 			<Footer
 				messages={messages}

@@ -7,4 +7,4 @@ export {
 	Avatar,
 	Emojis
 } from './components';
-export { messageStateType, messagesStateType } from './types';
+export { messageStateType, messagesStateType, profanityWords } from './types';
