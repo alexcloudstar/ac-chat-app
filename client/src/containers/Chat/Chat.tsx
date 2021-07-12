@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ChatWrapper } from './style';
 import { Body, Header, Footer, messagesStateType } from 'src/shared';
 import { io } from 'socket.io-client';
@@ -28,14 +28,18 @@ const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
 		socket.emit('typing', getLocalStorageItem('username'));
 	};
 
-	socket.on('chat', (data) => {
-		setMessages([...messages, data]);
-		setIsTyping({ isTyping: false });
-	});
+	useMemo(() => {
+		socket.on('chat', (data) => {
+			setMessages([...messages, data]);
+			setIsTyping({ isTyping: false });
+		});
+	}, [messages]);
 
-	socket.on('typing', (data) => {
-		setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
-	});
+	useMemo(() => {
+		socket.on('typing', (data) => {
+			setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
+		});
+	}, []);
 
 	return (
 		<ChatWrapper>

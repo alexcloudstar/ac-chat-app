@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { HeaderWrapper } from './style';
 import { HeaderProps } from './types';
 
@@ -10,4 +10,4 @@ const Header: FC<HeaderProps> = ({ headline }): JSX.Element => {
 	);
 };
 
-export default Header;
+export default memo(Header);
