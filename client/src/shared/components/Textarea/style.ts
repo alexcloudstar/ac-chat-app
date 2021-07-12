@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pxTorem } from 'src/utils/pxToRem';
+import { pxToRem } from 'src/utils/pxToRem';
 
 export const TextareaWrapper = styled.div`
 	height: 100%;
@@ -13,6 +13,6 @@ export const TextareaWrapper = styled.div`
 		outline: none;
 		padding: 5px 10px;
 		font-family: ${({ theme }) => theme.typography.fontFamily.secondary};
-		font-size: ${({ theme }) => pxTorem(theme.typography.sizes.md)};
+		font-size: ${({ theme }) => pxToRem(theme.typography.sizes.md)};
 	}
 `;

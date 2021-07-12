@@ -6,4 +6,6 @@ export type BodyProps = {
 		username?: string;
 	};
 	messageState: messageStateType[] | unknown[];
+	message: string;
+	setMessage: React.Dispatch<React.SetStateAction<string>>;
 };

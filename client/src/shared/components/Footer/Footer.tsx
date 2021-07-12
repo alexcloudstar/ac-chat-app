@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import { FooterWrapper } from './style';
 import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-import { Textarea } from 'src/shared';
+import { Emojis, Textarea } from 'src/shared';
 import { getLocalStorageItem } from 'src/utils/localStorage';
 
 const Footer: FC<FooterProps> = ({
@@ -24,6 +24,7 @@ const Footer: FC<FooterProps> = ({
 				setMessage={setMessage}
 				onKeyPressHandler={onKeyPressHandler}
 			/>
+
 			<Button
 				variant="contained"
 				color="primary"

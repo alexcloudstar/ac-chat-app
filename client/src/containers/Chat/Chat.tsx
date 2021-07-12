@@ -7,7 +7,7 @@ import { getLocalStorageItem } from 'src/utils/localStorage';
 const socket = io('http://localhost:4000');
 
 const Chat = (): JSX.Element => {
-	const [message, setMessage] = useState<string>();
+	const [message, setMessage] = useState<string>('');
 	const [messages, setMessages] = useState<messagesStateType[]>([]);
 	const [isTyping, setIsTyping] = useState<{
 		isTyping: boolean;
@@ -39,7 +39,12 @@ const Chat = (): JSX.Element => {
 	return (
 		<ChatWrapper>
 			<Header headline="Chat Header" />
-			<Body messageState={messages} isTyping={isTyping} />
+			<Body
+				messageState={messages}
+				isTyping={isTyping}
+				message={message}
+				setMessage={setMessage}
+			/>
 			<Footer
 				messages={messages}
 				setMessages={setMessages}
