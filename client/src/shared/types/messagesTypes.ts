@@ -14,3 +14,7 @@ export type messagesStateType = {
 		React.SetStateAction<messageStateType[] | unknown[]>
 	>;
 };
+
+export type profanityWords = {
+	profanityWords: string[];
+};

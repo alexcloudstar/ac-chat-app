@@ -1,1 +1,5 @@
-export { messageStateType, messagesStateType } from './messagesTypes';
+export {
+	messageStateType,
+	messagesStateType,
+	profanityWords
+} from './messagesTypes';

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { ChatWrapper } from './style';
 import { Body, Header, Footer, messagesStateType } from 'src/shared';
 import { io } from 'socket.io-client';
 import { getLocalStorageItem } from 'src/utils/localStorage';
+import { profanityWords } from 'src/shared';
 
 const socket = io('http://localhost:4000');
 
-const Chat = (): JSX.Element => {
+const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
 	const [messages, setMessages] = useState<messagesStateType[]>([]);
 	const [isTyping, setIsTyping] = useState<{
@@ -44,6 +45,7 @@ const Chat = (): JSX.Element => {
 				isTyping={isTyping}
 				message={message}
 				setMessage={setMessage}
+				profanityWords={profanityWords}
 			/>
 			<Footer
 				messages={messages}

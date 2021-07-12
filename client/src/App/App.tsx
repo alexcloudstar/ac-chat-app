@@ -6,12 +6,23 @@ import { defaultTheme } from 'src/Theme/theme';
 import { ThemeProvider } from 'styled-components';
 
 const App = (): JSX.Element => {
+	const profanityWords = [
+		'nigga',
+		'die',
+		'omfg',
+		'fuck',
+		'fuck you',
+		'shit',
+		'asshole',
+		'bastard'
+	];
+
 	return (
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
 				<Username />
-				<Chat />
+				<Chat profanityWords={profanityWords} />
 			</ThemeProvider>
 		</>
 	);
