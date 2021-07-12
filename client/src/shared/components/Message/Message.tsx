@@ -9,7 +9,9 @@ const Message: FC<MessageProps> = ({ username, message }): JSX.Element => {
 			<div>
 				<Avatar username={username} />
 				<p>
-					<span>{!username ? 'Guest' : username}</span>: {message}
+					<span>
+						{!username ? 'Guest' : username} : {message}
+					</span>
 				</p>
 			</div>
 		</MessageWrapper>

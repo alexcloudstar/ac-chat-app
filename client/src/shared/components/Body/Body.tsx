@@ -3,8 +3,14 @@ import { FC } from 'react';
 import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { Message } from '../Message';
+import { Emojis } from '../Emojis';
 
-const Body: FC<BodyProps> = ({ messageState, isTyping }): JSX.Element => {
+const Body: FC<BodyProps> = ({
+	messageState,
+	isTyping,
+	message,
+	setMessage
+}): JSX.Element => {
 	return (
 		<BodyWrapper>
 			{messageState.length > 0 &&
@@ -19,6 +25,7 @@ const Body: FC<BodyProps> = ({ messageState, isTyping }): JSX.Element => {
 					)
 				)}
 
+			<Emojis message={message} setMessage={setMessage} />
 			{isTyping.isTyping ? (
 				<Message username={isTyping.username} message={'is typing...'} />
 			) : (
