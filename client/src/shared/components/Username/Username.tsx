@@ -1,4 +1,4 @@
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, useCallback, useMemo, useState } from 'react';
 import { UsernameWrapper } from './style';
 import { UsernameProps } from './types';
 import { TextField, InputAdornment } from '@material-ui/core';
@@ -11,11 +11,11 @@ import {
 const Username: FC<UsernameProps> = (): JSX.Element => {
 	const [username, setUsername] = useState<string>('');
 
-	const onChangeHandler = (e) => {
+	const onChangeHandler = useCallback((e) => {
 		setUsername(e.target.value);
 
 		setLocalStorageItem('username', e.target.value);
-	};
+	}, []);
 	return (
 		<UsernameWrapper>
 			<TextField

@@ -4,7 +4,6 @@ import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { Message } from '../Message';
 import { Emojis } from '../Emojis';
-import { getLocalStorageItem } from 'src/utils/localStorage';
 
 const Body: FC<BodyProps> = ({
 	profanityWords,
@@ -31,7 +30,7 @@ const Body: FC<BodyProps> = ({
 					)
 				)}
 
-			<Emojis message={message} setMessage={setMessage} />
+			{/* <Emojis message={message} setMessage={setMessage} /> */}
 			{isTyping.isTyping ? (
 				<Message
 					username={isTyping.username}

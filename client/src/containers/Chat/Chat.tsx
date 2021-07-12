@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import { ChatWrapper } from './style';
 import { Body, Header, Footer, messagesStateType } from 'src/shared';
 import { io } from 'socket.io-client';
@@ -15,18 +15,18 @@ const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
 		username?: string;
 	}>({ isTyping: false, username: 'Guest' });
 
-	const onClickHandler = () => {
+	const onClickHandler = useCallback(() => {
 		socket.emit('chat', {
 			message,
 			username: getLocalStorageItem('username')
 		});
 
 		setMessage('');
-	};
+	}, [message]);
 
-	const onKeyPressHandler = () => {
+	const onKeyPressHandler = useCallback(() => {
 		socket.emit('typing', getLocalStorageItem('username'));
-	};
+	}, []);
 
 	useMemo(() => {
 		socket.on('chat', (data) => {

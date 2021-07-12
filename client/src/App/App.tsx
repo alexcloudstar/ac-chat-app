@@ -21,7 +21,7 @@ const App = (): JSX.Element => {
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
-				<Username />
+				{/* <Username /> */}
 				<Chat profanityWords={profanityWords} />
 			</ThemeProvider>
 		</>
