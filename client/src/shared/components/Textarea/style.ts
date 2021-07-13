@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { pxToRem } from 'src/utils/pxToRem';
+import Box from '@material-ui/core/Box/Box';
 
-export const TextareaWrapper = styled.div`
+export const TextareaWrapper = styled(Box)`
 	height: 100%;
 	width: 100%;
 

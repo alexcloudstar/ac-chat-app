@@ -1,26 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo, useMemo, useState } from 'react';
 import { FC } from 'react';
 import { BodyWrapper } from './style';
 import { BodyProps } from './types';
-import { Message } from '../Message';
-import { Emojis } from '../Emojis';
+import { v4 as uuidv4 } from 'uuid';
+import { io } from 'socket.io-client';
+const Message = React.lazy(() => import('../Message/Message'));
+const Emojis = React.lazy(() => import('../Emojis/Emojis'));
 
 const Body: FC<BodyProps> = ({
 	profanityWords,
 	messageState,
-	isTyping,
 	message,
-	setMessage
+	setMessage,
+	setMessages
 }): JSX.Element => {
 	return (
 		<BodyWrapper>
 			{messageState.length > 0 &&
 				messageState.map(
-					(
-						{ username, message }: { username: string; message: string },
-						index
-					) => (
-						<Fragment key={index}>
+					({ username, message }: { username: string; message: string }) => (
+						<Fragment key={uuidv4()}>
 							<Message
 								username={username}
 								message={message}
@@ -30,18 +29,9 @@ const Body: FC<BodyProps> = ({
 					)
 				)}
 
-			{/* <Emojis message={message} setMessage={setMessage} /> */}
-			{isTyping.isTyping ? (
-				<Message
-					username={isTyping.username}
-					message={'is typing...'}
-					profanityWords={profanityWords}
-				/>
-			) : (
-				<></>
-			)}
+			<Emojis message={message} setMessage={setMessage} />
 		</BodyWrapper>
 	);
 };
 
-export default Body;
+export default memo(Body);

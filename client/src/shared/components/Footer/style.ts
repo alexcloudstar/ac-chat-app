@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Box from '@material-ui/core/Box/Box';
 
-export const FooterWrapper = styled.div`
+export const FooterWrapper = styled(Box)`
 	width: 100%;
 	height: 20%;
 	display: flex;

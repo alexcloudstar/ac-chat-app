@@ -1,7 +1,8 @@
 import { getLocalStorageItem } from 'src/utils/localStorage';
 import styled from 'styled-components';
+import Box from '@material-ui/core/Box/Box';
 
-export const MessageWrapper = styled.div<{ username: string }>`
+export const MessageWrapper = styled(Box)<{ username: string }>`
 	display: flex;
 	justify-content: ${({ username }) =>
 		username === getLocalStorageItem('username') ? 'flex-start' : 'flex-end'};

@@ -1,11 +1,11 @@
-import React, { FC, useState, useRef, useEffect, useCallback } from 'react';
+import React, { FC, useState, useRef, useCallback, memo } from 'react';
 import { EmojiProps } from './types';
 import Picker from 'emoji-picker-react';
 import { EmojiOpenPanelWrapper, EmojisWrapper } from './style';
 import useOutsideClick from 'src/shared/hooks/useOutsideClick';
 
 const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
-	const [chosenEmoji, setChosenEmoji] = useState(null);
+	const [_, setChosenEmoji] = useState(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const emojiRef = useRef(null);
 
@@ -27,9 +27,9 @@ const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
 		[message, setMessage]
 	);
 
-	// const openEmojiSelector = () => setIsOpen(!isOpen);
+	const openEmojiSelector = useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
-	// const outsideEmojiSelectorClick = () => setIsOpen(false);
+	const outsideEmojiSelectorClick = useCallback(() => setIsOpen(false), []);
 
 	return (
 		<EmojisWrapper>
@@ -43,7 +43,7 @@ const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
 			)}
 
 			<EmojiOpenPanelWrapper>
-				{/* <span onClick={openEmojiSelector}>😀</span> */}
+				<span onClick={openEmojiSelector}>😀</span>
 			</EmojiOpenPanelWrapper>
 
 			{isOpen && (
@@ -52,9 +52,9 @@ const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
 				</div>
 			)}
 
-			{/* {useOutsideClick(emojiRef, outsideEmojiSelectorClick)} */}
+			{useOutsideClick(emojiRef, outsideEmojiSelectorClick)}
 		</EmojisWrapper>
 	);
 };
 
-export default Emojis;
+export default memo(Emojis);

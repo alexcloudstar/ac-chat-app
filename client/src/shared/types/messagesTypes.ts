@@ -16,5 +16,5 @@ export type messagesStateType = {
 };
 
 export type profanityWords = {
-	profanityWords: string[];
+	profanityWords?: string[];
 };

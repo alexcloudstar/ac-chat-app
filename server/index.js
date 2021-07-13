@@ -11,8 +11,6 @@ const io = require('socket.io')(server, {
 });
 
 io.on('connection', socket => {
-  console.log('message socket ', socket.id);
-
   socket.on('chat', data => {
     io.sockets.emit('chat', data);
   });

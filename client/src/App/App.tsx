@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Chat } from 'src/containers';
 import { Username } from 'src/shared/components/Username';
 import GlobalStyles from 'src/Theme/globalStyles';
@@ -21,11 +21,11 @@ const App = (): JSX.Element => {
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
-				{/* <Username /> */}
+				<Username />
 				<Chat profanityWords={profanityWords} />
 			</ThemeProvider>
 		</>
 	);
 };
 
-export default App;
+export default memo(App);

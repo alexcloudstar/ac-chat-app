@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { MessageWrapper } from './styles';
 import { MessageProps } from './types';
 import { Avatar } from 'src/shared';
@@ -8,11 +8,15 @@ const Message: FC<MessageProps> = ({
 	message,
 	profanityWords
 }): JSX.Element => {
-	const checkMessage = (message: string) => {
-		return profanityWords.includes(message)
-			? message.replace(message, '****')
-			: message;
-	};
+	const checkMessage = useCallback(
+		(message: string) => {
+			return profanityWords?.includes(message)
+				? message.replace(message, '****')
+				: message;
+		},
+		[profanityWords]
+	);
+
 	return (
 		<MessageWrapper username={username}>
 			<div>
@@ -27,4 +31,4 @@ const Message: FC<MessageProps> = ({
 	);
 };
 
-export default Message;
+export default memo(Message);

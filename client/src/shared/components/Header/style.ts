@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { pxToRem } from 'src/utils/pxToRem';
+import Box from '@material-ui/core/Box/Box';
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled(Box)`
 	height: 10%;
 	background: ${({ theme }) => theme.palette.primary.main};
 	span {
