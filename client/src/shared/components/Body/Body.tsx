@@ -7,6 +7,8 @@ import { io } from 'socket.io-client';
 const Message = React.lazy(() => import('../Message/Message'));
 const Emojis = React.lazy(() => import('../Emojis/Emojis'));
 
+const socket = io('http://localhost:4000');
+
 const Body: FC<BodyProps> = ({
 	profanityWords,
 	messageState,
@@ -14,6 +16,18 @@ const Body: FC<BodyProps> = ({
 	setMessage,
 	setMessages
 }): JSX.Element => {
+	const [isTyping, setIsTyping] = useState<{
+		isTyping: boolean;
+		username?: string;
+	}>({ isTyping: false, username: 'Guest' });
+
+	useMemo(() => {
+		socket.on('chat', (data) => {
+			setMessages([...messageState, data]);
+			setIsTyping({ isTyping: false });
+		});
+	}, [messageState, setMessages]);
+
 	return (
 		<BodyWrapper>
 			{messageState.length > 0 &&
@@ -30,6 +44,10 @@ const Body: FC<BodyProps> = ({
 				)}
 
 			<Emojis message={message} setMessage={setMessage} />
+
+			{isTyping.isTyping && (
+				<Message username={isTyping.username} message={'is typing...'} />
+			)}
 		</BodyWrapper>
 	);
 };

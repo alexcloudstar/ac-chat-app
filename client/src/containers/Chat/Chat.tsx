@@ -12,9 +12,6 @@ const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
 	const [message, setMessage] = useState<string>('');
 	const [messages, setMessages] = useState<messagesStateType[]>([]);
 
-	console.log(message);
-	console.log(messages);
-
 	return (
 		<ChatWrapper>
 			<Header headline="Chat Header" />
