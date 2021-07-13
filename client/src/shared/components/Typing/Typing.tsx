@@ -1,11 +1,13 @@
-import React, { useMemo, useState } from 'react';
-import { Message } from 'src/shared';
+import React, { FC, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
-import { getLocalStorageItem } from 'src/utils/localStorage';
+import { TypingProps } from './types';
 
 const socket = io('http://localhost:4000');
 
-const Typing = ({ setMessages, messageState }): JSX.Element => {
+const Typing: FC<TypingProps> = ({
+	messageState,
+	setMessages
+}): JSX.Element => {
 	const [isTyping, setIsTyping] = useState<{
 		isTyping: boolean;
 		username?: string;

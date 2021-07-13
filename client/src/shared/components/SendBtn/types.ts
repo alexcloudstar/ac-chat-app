@@ -1,6 +1,5 @@
 export type SendBtnProps = {
-	// onClick: () => void;
 	disabled: boolean;
-	message: any;
-	setMessage: any;
+	message: string;
+	setMessage: React.Dispatch<React.SetStateAction<string>>;
 };

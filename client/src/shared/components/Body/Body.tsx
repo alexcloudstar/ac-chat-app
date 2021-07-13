@@ -4,6 +4,7 @@ import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { v4 as uuidv4 } from 'uuid';
 import { io } from 'socket.io-client';
+import { Typing } from '../Typing';
 const Message = React.lazy(() => import('../Message/Message'));
 const Emojis = React.lazy(() => import('../Emojis/Emojis'));
 
@@ -46,7 +47,7 @@ const Body: FC<BodyProps> = ({
 			<Emojis message={message} setMessage={setMessage} />
 
 			{isTyping.isTyping && (
-				<Message username={isTyping.username} message={'is typing...'} />
+				<Typing messageState={messageState} setMessages={setMessages} />
 			)}
 		</BodyWrapper>
 	);
