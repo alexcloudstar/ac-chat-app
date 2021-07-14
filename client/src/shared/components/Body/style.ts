@@ -6,4 +6,5 @@ export const BodyWrapper = styled(Box)`
 	height: 70%;
 	overflow-y: scroll;
 	position: relative;
+	padding-bottom: 35px;
 `;

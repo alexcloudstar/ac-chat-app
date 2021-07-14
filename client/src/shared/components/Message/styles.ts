@@ -13,7 +13,7 @@ export const MessageWrapper = styled(Box)<{ username: string }>`
 
 	> div {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		background-color: ${({ username }) =>
 			username === getLocalStorageItem('username')
 				? ({ theme }) => theme.palette.primary.main
@@ -36,7 +36,7 @@ export const MessageWrapper = styled(Box)<{ username: string }>`
 		display: flex;
 
 		span {
-			overflow-wrap: normal;
+			overflow-wrap: inherit;
 			font-weight: ${({ username }) =>
 				username === getLocalStorageItem('username')
 					? ({ theme }) => theme.typography.weight.regular
