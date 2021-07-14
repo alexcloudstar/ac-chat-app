@@ -4,3 +4,6 @@ export { Header } from './Header';
 export { Footer } from './Footer';
 export { Message } from './Message';
 export { Avatar } from './Avatar';
+export { Emojis } from './Emojis';
+export { SendBtn } from './SendBtn';
+export { Typing } from './Typing';

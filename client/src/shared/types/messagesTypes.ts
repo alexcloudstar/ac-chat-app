@@ -14,3 +14,14 @@ export type messagesStateType = {
 		React.SetStateAction<messageStateType[] | unknown[]>
 	>;
 };
+
+export type messagesStateTypeWithMessageStateType = {
+	messages: messageStateType[] | unknown[];
+	setMessages: React.Dispatch<
+		React.SetStateAction<messageStateType[] | unknown[]>
+	>;
+} & messageStateType;
+
+export type profanityWords = {
+	profanityWords?: string[];
+};

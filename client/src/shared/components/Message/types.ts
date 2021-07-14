@@ -1,3 +1,3 @@
-import { messageStateType } from 'src/shared';
+import { messageStateType, profanityWords } from 'src/shared';
 
-export type MessageProps = messageStateType;
+export type MessageProps = messageStateType & profanityWords;

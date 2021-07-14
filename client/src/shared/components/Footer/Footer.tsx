@@ -1,40 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { FooterProps } from './types';
-
-import { io } from 'socket.io-client';
-
 import { FooterWrapper } from './style';
-import { Button } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send';
-import { Textarea } from 'src/shared';
-import { getLocalStorageItem } from 'src/utils/localStorage';
 
-const Footer: FC<FooterProps> = ({
-	messages,
-	setMessages,
-	message,
-	setMessage,
-	onClickHandler,
-	onKeyPressHandler
-}): JSX.Element => {
+const Textarea = React.lazy(() => import('../Textarea/Textarea'));
+const SendBtn = React.lazy(() => import('../SendBtn/SendBtn'));
+const Emojis = React.lazy(() => import('../Emojis/Emojis'));
+
+const Footer: FC<FooterProps> = (): JSX.Element => {
+	const [message, setMessage] = useState<string>('');
+
 	return (
 		<FooterWrapper>
-			<Textarea
-				message={message}
-				setMessage={setMessage}
-				onKeyPressHandler={onKeyPressHandler}
-			/>
-			<Button
-				variant="contained"
-				color="primary"
-				endIcon={<SendIcon />}
-				onClick={onClickHandler}
-				disabled={!message}
-			>
-				Send
-			</Button>
+			<Emojis message={message} setMessage={setMessage} />
+
+			<Textarea message={message} setMessage={setMessage} />
+
+			<SendBtn disabled={!message} message={message} setMessage={setMessage} />
 		</FooterWrapper>
 	);
 };
 
-export default Footer;
+export default memo(Footer);

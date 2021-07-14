@@ -1,7 +1,8 @@
 import { getLocalStorageItem } from 'src/utils/localStorage';
 import styled from 'styled-components';
+import Box from '@material-ui/core/Box/Box';
 
-export const MessageWrapper = styled.div<{ username: string }>`
+export const MessageWrapper = styled(Box)<{ username: string }>`
 	display: flex;
 	justify-content: ${({ username }) =>
 		username === getLocalStorageItem('username') ? 'flex-start' : 'flex-end'};
@@ -12,7 +13,7 @@ export const MessageWrapper = styled.div<{ username: string }>`
 
 	> div {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		background-color: ${({ username }) =>
 			username === getLocalStorageItem('username')
 				? ({ theme }) => theme.palette.primary.main
@@ -35,7 +36,7 @@ export const MessageWrapper = styled.div<{ username: string }>`
 		display: flex;
 
 		span {
-			overflow-wrap: normal;
+			overflow-wrap: inherit;
 			font-weight: ${({ username }) =>
 				username === getLocalStorageItem('username')
 					? ({ theme }) => theme.typography.weight.regular
