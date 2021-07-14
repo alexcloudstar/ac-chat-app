@@ -1,31 +1,35 @@
-import React, { FC, useState, useRef, useEffect } from 'react';
+import React, { FC, useState, useRef, useCallback, memo } from 'react';
 import { EmojiProps } from './types';
 import Picker from 'emoji-picker-react';
 import { EmojiOpenPanelWrapper, EmojisWrapper } from './style';
 import useOutsideClick from 'src/shared/hooks/useOutsideClick';
 
 const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
-	const [chosenEmoji, setChosenEmoji] = useState(null);
+	const [_, setChosenEmoji] = useState(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const emojiRef = useRef(null);
 
-	const onEmojiClick = (_, emojiObject) => {
-		setChosenEmoji(emojiObject);
+	const onEmojiClick = useCallback(
+		(_, emojiObject) => {
+			setChosenEmoji(emojiObject);
 
-		setMessage(`${message} ${emojiObject.emoji}`);
-	};
+			setMessage(`${message} ${emojiObject.emoji}`);
+		},
+		[message, setMessage]
+	);
 
-	const onFastEmojiClick = (
-		e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-	) => {
-		const target = e.target as HTMLElement;
+	const onFastEmojiClick = useCallback(
+		(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+			const target = e.target as HTMLElement;
 
-		setMessage(`${message} ${target.innerText}`);
-	};
+			setMessage(`${message} ${target.innerText}`);
+		},
+		[message, setMessage]
+	);
 
-	const openEmojiSelector = () => setIsOpen(!isOpen);
+	const openEmojiSelector = useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
-	const outsideEmojiSelectorClick = () => setIsOpen(false);
+	const outsideEmojiSelectorClick = useCallback(() => setIsOpen(false), []);
 
 	return (
 		<EmojisWrapper>
@@ -53,4 +57,4 @@ const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
 	);
 };
 
-export default Emojis;
+export default memo(Emojis);

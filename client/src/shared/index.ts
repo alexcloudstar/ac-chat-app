@@ -5,6 +5,13 @@ export {
 	Footer,
 	Message,
 	Avatar,
-	Emojis
+	Emojis,
+	SendBtn,
+	Typing
 } from './components';
-export { messageStateType, messagesStateType, profanityWords } from './types';
+export type {
+	messageStateType,
+	messagesStateType,
+	profanityWords,
+	messagesStateTypeWithMessageStateType
+} from './types';

@@ -1,48 +1,56 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo, useEffect, useMemo, useState } from 'react';
 import { FC } from 'react';
 import { BodyWrapper } from './style';
 import { BodyProps } from './types';
-import { Message } from '../Message';
-import { Emojis } from '../Emojis';
-import { getLocalStorageItem } from 'src/utils/localStorage';
+import { v4 as uuidv4 } from 'uuid';
+import { io } from 'socket.io-client';
+import { messagesStateTypeWithMessageStateType } from 'src/shared';
+const Message = React.lazy(() => import('../Message/Message'));
 
-const Body: FC<BodyProps> = ({
-	profanityWords,
-	messageState,
-	isTyping,
-	message,
-	setMessage
-}): JSX.Element => {
+const socket = io('http://localhost:4000');
+
+const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
+	const [messages, setMessages] = useState<
+		messagesStateTypeWithMessageStateType[]
+	>([]);
+
+	const [isTyping, setIsTyping] = useState<{
+		isTyping: boolean;
+		username?: string;
+	}>({ isTyping: false, username: 'Guest' });
+
+	useEffect(() => {
+		socket.on('chat', (data) => {
+			setMessages([...messages, data]);
+		});
+
+		return () => {
+			socket.off('chat');
+		};
+	}, [messages, setMessages]);
+
+	useMemo(() => {
+		setIsTyping({ isTyping: false });
+	}, []);
+
 	return (
 		<BodyWrapper>
-			{messageState.length > 0 &&
-				messageState.map(
-					(
-						{ username, message }: { username: string; message: string },
-						index
-					) => (
-						<Fragment key={index}>
-							<Message
-								username={username}
-								message={message}
-								profanityWords={profanityWords}
-							/>
-						</Fragment>
-					)
-				)}
-
-			<Emojis message={message} setMessage={setMessage} />
-			{isTyping.isTyping ? (
-				<Message
-					username={isTyping.username}
-					message={'is typing...'}
-					profanityWords={profanityWords}
-				/>
-			) : (
-				<></>
+			{messages?.map(
+				({ username, message }: { username: string; message: string }) => (
+					<Message
+						key={uuidv4()}
+						username={username}
+						message={message}
+						profanityWords={profanityWords}
+					/>
+				)
 			)}
+
+			{/* {isTyping.isTyping && (
+				<Typing messageState={messageState} setMessages={setMessages} />
+			)} */}
 		</BodyWrapper>
 	);
 };
 
-export default Body;
+export default memo(Body);

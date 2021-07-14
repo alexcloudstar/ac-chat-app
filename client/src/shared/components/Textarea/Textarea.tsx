@@ -1,17 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, memo, useCallback } from 'react';
+import { getLocalStorageItem } from 'src/utils/localStorage';
 import { TextareaWrapper } from './style';
-import { TextareaAutosize } from '@material-ui/core';
+import { TextareaProps } from './types';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize/TextareaAutosize';
+import { io } from 'socket.io-client';
 
-import { textareaProps } from './types';
+const socket = io('http://localhost:4000');
 
-const Textarea: FC<textareaProps> = ({
-	message,
-	setMessage,
-	onKeyPressHandler
-}): JSX.Element => {
-	const onChangeHandler = (e) => {
-		setMessage(e.target.value);
-	};
+const Textarea: FC<TextareaProps> = ({ message, setMessage }): JSX.Element => {
+	const onChangeHandler = useCallback(
+		(e) => {
+			setMessage(e.target.value);
+
+			setTimeout(
+				() => socket.emit('typing', getLocalStorageItem('username')),
+				500
+			);
+		},
+		[setMessage]
+	);
 
 	return (
 		<TextareaWrapper>
@@ -21,10 +28,9 @@ const Textarea: FC<textareaProps> = ({
 				placeholder="Type your message here..."
 				value={message}
 				onChange={onChangeHandler}
-				onKeyPress={onKeyPressHandler}
 			/>
 		</TextareaWrapper>
 	);
 };
 
-export default Textarea;
+export default memo(Textarea);

@@ -1,9 +1,10 @@
 import { pxToRem } from 'src/utils/pxToRem';
 import styled from 'styled-components';
+import Box from '@material-ui/core/Box/Box';
 
-export const EmojisWrapper = styled.div`
+export const EmojisWrapper = styled(Box)`
 	position: absolute;
-	bottom: 5px;
+	top: -35px;
 	padding: 0 5px;
 	left: 0;
 	width: 100%;
@@ -21,7 +22,7 @@ export const EmojisWrapper = styled.div`
 	}
 `;
 
-export const EmojiOpenPanelWrapper = styled.div`
+export const EmojiOpenPanelWrapper = styled(Box)`
 	position: absolute;
 	right: 0;
 	bottom: 0;

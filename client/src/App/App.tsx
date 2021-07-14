@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Chat } from 'src/containers';
 import { Username } from 'src/shared/components/Username';
 import GlobalStyles from 'src/Theme/globalStyles';
@@ -28,4 +28,4 @@ const App = (): JSX.Element => {
 	);
 };
 
-export default App;
+export default memo(App);

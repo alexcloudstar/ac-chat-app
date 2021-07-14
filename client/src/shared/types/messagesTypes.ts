@@ -15,6 +15,13 @@ export type messagesStateType = {
 	>;
 };
 
+export type messagesStateTypeWithMessageStateType = {
+	messages: messageStateType[] | unknown[];
+	setMessages: React.Dispatch<
+		React.SetStateAction<messageStateType[] | unknown[]>
+	>;
+} & messageStateType;
+
 export type profanityWords = {
-	profanityWords: string[];
+	profanityWords?: string[];
 };

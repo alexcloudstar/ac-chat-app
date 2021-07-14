@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { AvatarWrapper } from './style';
 import { AvatarProps } from './types';
 
@@ -10,4 +10,4 @@ const Avatar: FC<AvatarProps> = ({ username }) => {
 	);
 };
 
-export default Avatar;
+export default memo(Avatar);
