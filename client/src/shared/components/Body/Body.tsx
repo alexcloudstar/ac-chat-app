@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useMemo, useState } from 'react';
+import React, { Fragment, memo, useEffect, useMemo, useState } from 'react';
 import { FC } from 'react';
 import { BodyWrapper } from './style';
 import { BodyProps } from './types';
@@ -19,24 +19,30 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 		username?: string;
 	}>({ isTyping: false, username: 'Guest' });
 
-	useMemo(() => {
+	useEffect(() => {
 		socket.on('chat', (data) => {
 			setMessages([...messages, data]);
-			setIsTyping({ isTyping: false });
 		});
+
+		return () => {
+			socket.off('chat');
+		};
 	}, [messages, setMessages]);
+
+	useMemo(() => {
+		setIsTyping({ isTyping: false });
+	}, []);
 
 	return (
 		<BodyWrapper>
 			{messages?.map(
 				({ username, message }: { username: string; message: string }) => (
-					<Fragment key={uuidv4()}>
-						<Message
-							username={username}
-							message={message}
-							profanityWords={profanityWords}
-						/>
-					</Fragment>
+					<Message
+						key={uuidv4()}
+						username={username}
+						message={message}
+						profanityWords={profanityWords}
+					/>
 				)
 			)}
 

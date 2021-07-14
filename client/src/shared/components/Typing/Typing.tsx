@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
 import { TypingProps } from './types';
 
@@ -13,17 +13,25 @@ const Typing: FC<TypingProps> = ({
 		username?: string;
 	}>({ isTyping: false, username: 'Guest' });
 
-	useMemo(() => {
+	useEffect(() => {
 		socket.on('typing', (data) => {
 			setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
 		});
+
+		return () => {
+			socket.off('typing');
+		};
 	}, []);
 
-	useMemo(() => {
+	useEffect(() => {
 		socket.on('chat', (data) => {
 			setMessages([...messageState, data]);
 			setIsTyping({ isTyping: false });
 		});
+
+		return () => {
+			socket.off('chat');
+		};
 	}, [messageState, setMessages]);
 
 	return isTyping.isTyping ? <div>Someone is typing</div> : <></>;
