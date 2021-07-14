@@ -1,13 +1,18 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { FooterProps } from './types';
-
 import { FooterWrapper } from './style';
+
 const Textarea = React.lazy(() => import('../Textarea/Textarea'));
 const SendBtn = React.lazy(() => import('../SendBtn/SendBtn'));
+const Emojis = React.lazy(() => import('../Emojis/Emojis'));
 
-const Footer: FC<FooterProps> = ({ message, setMessage }): JSX.Element => {
+const Footer: FC<FooterProps> = (): JSX.Element => {
+	const [message, setMessage] = useState<string>('');
+
 	return (
 		<FooterWrapper>
+			<Emojis message={message} setMessage={setMessage} />
+
 			<Textarea message={message} setMessage={setMessage} />
 
 			<SendBtn disabled={!message} message={message} setMessage={setMessage} />

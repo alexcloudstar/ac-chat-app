@@ -8,6 +8,7 @@ export const FooterWrapper = styled(Box)`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 	border-top: 1px solid ${({ theme }) => theme.palette.primary.main};
 
 	button {

@@ -9,10 +9,14 @@ const socket = io('http://localhost:4000');
 
 const SendBtn: FC<SendBtnProps> = ({ disabled, message, setMessage }) => {
 	const onClickHandler = useCallback(() => {
-		socket.emit('chat', {
-			message,
-			username: getLocalStorageItem('username')
-		});
+		setTimeout(
+			() =>
+				socket.emit('chat', {
+					message,
+					username: getLocalStorageItem('username')
+				}),
+			500
+		);
 
 		setMessage('');
 	}, [message, setMessage]);

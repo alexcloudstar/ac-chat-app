@@ -4,19 +4,16 @@ import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { v4 as uuidv4 } from 'uuid';
 import { io } from 'socket.io-client';
-import { Typing } from '../Typing';
+import { messagesStateTypeWithMessageStateType } from 'src/shared';
 const Message = React.lazy(() => import('../Message/Message'));
-const Emojis = React.lazy(() => import('../Emojis/Emojis'));
 
 const socket = io('http://localhost:4000');
 
-const Body: FC<BodyProps> = ({
-	profanityWords,
-	messageState,
-	message,
-	setMessage,
-	setMessages
-}): JSX.Element => {
+const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
+	const [messages, setMessages] = useState<
+		messagesStateTypeWithMessageStateType[]
+	>([]);
+
 	const [isTyping, setIsTyping] = useState<{
 		isTyping: boolean;
 		username?: string;
@@ -24,31 +21,28 @@ const Body: FC<BodyProps> = ({
 
 	useMemo(() => {
 		socket.on('chat', (data) => {
-			setMessages([...messageState, data]);
+			setMessages([...messages, data]);
 			setIsTyping({ isTyping: false });
 		});
-	}, [messageState, setMessages]);
+	}, [messages, setMessages]);
 
 	return (
 		<BodyWrapper>
-			{messageState.length > 0 &&
-				messageState.map(
-					({ username, message }: { username: string; message: string }) => (
-						<Fragment key={uuidv4()}>
-							<Message
-								username={username}
-								message={message}
-								profanityWords={profanityWords}
-							/>
-						</Fragment>
-					)
-				)}
-
-			<Emojis message={message} setMessage={setMessage} />
-
-			{isTyping.isTyping && (
-				<Typing messageState={messageState} setMessages={setMessages} />
+			{messages?.map(
+				({ username, message }: { username: string; message: string }) => (
+					<Fragment key={uuidv4()}>
+						<Message
+							username={username}
+							message={message}
+							profanityWords={profanityWords}
+						/>
+					</Fragment>
+				)
 			)}
+
+			{/* {isTyping.isTyping && (
+				<Typing messageState={messageState} setMessages={setMessages} />
+			)} */}
 		</BodyWrapper>
 	);
 };

@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box/Box';
 
 export const EmojisWrapper = styled(Box)`
 	position: absolute;
-	bottom: 5px;
+	top: -35px;
 	padding: 0 5px;
 	left: 0;
 	width: 100%;

@@ -11,13 +11,14 @@ const Textarea: FC<TextareaProps> = ({ message, setMessage }): JSX.Element => {
 	const onChangeHandler = useCallback(
 		(e) => {
 			setMessage(e.target.value);
+
+			setTimeout(
+				() => socket.emit('typing', getLocalStorageItem('username')),
+				500
+			);
 		},
 		[setMessage]
 	);
-
-	const onKeyPressHandler = useCallback(() => {
-		socket.emit('typing', getLocalStorageItem('username'));
-	}, []);
 
 	return (
 		<TextareaWrapper>
@@ -27,7 +28,6 @@ const Textarea: FC<TextareaProps> = ({ message, setMessage }): JSX.Element => {
 				placeholder="Type your message here..."
 				value={message}
 				onChange={onChangeHandler}
-				onKeyPress={onKeyPressHandler}
 			/>
 		</TextareaWrapper>
 	);
