@@ -6,7 +6,7 @@ import { defaultTheme } from 'src/Theme/theme';
 import { ThemeProvider } from 'styled-components';
 
 const App = (): JSX.Element => {
-	const profanityWords = [
+	const profanityWords: string[] = [
 		'nigga',
 		'die',
 		'omfg',
@@ -17,12 +17,33 @@ const App = (): JSX.Element => {
 		'bastard'
 	];
 
+	const chatCmds: {
+		cmd: string;
+		name: string;
+		param: string;
+		options?: unknown;
+	}[] = [
+		{
+			name: 'ban',
+			cmd: '/ban',
+			param: '@username'
+		},
+		{
+			name: 'mute',
+			cmd: '/mute',
+			param: '@username',
+			options: {
+				time: 30
+			}
+		}
+	];
+
 	return (
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
 				<Username />
-				<Chat profanityWords={profanityWords} />
+				<Chat profanityWords={profanityWords} cmds={chatCmds} />
 			</ThemeProvider>
 		</>
 	);

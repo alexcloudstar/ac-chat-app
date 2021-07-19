@@ -7,7 +7,8 @@ export {
 	Avatar,
 	Emojis,
 	SendBtn,
-	Typing
+	Typing,
+	PunishmentWarning
 } from './components';
 export type {
 	messageStateType,
