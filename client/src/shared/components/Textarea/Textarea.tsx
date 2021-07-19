@@ -42,13 +42,15 @@ const Textarea: FC<TextareaProps> = ({
 			const blackList = getLocalStorageItem('blackList');
 			const blackListArr = JSON.parse(blackList);
 			const punishCmd = message.split(' ');
-
-			if (!myRank && punishCmd[0]) return alert("You don't have access ");
+			cmds.map((cmd) => {
+				if (!myRank && punishCmd[0] === cmd.cmd)
+					return alert("You don't have access1");
+			});
 
 			myRank?.map((rank) => {
 				const findedRanks = ranks.find((r) => r.name === rank.rank);
 				findedRanks.cmdAccess.map((cmd) => {
-					if (punishCmd[0] !== cmd) return alert("You don't have access ");
+					if (punishCmd[0] !== cmd) return alert("You don't have access");
 
 					const minutesToAdd = parseInt(punishCmd[2]);
 					const currentDate = new Date();
