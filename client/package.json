@@ -1,6 +1,6 @@
 {
 	"name": "react-typescript-webpack-eslint-prettier",
-	"version": "0.0.38",
+	"version": "0.0.40",
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
