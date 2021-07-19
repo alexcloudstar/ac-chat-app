@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Chat } from 'src/containers';
 import { Username } from 'src/shared/components/Username';
+import { punishmentType } from 'src/shared/types';
 import GlobalStyles from 'src/Theme/globalStyles';
 import { defaultTheme } from 'src/Theme/theme';
 import { ThemeProvider } from 'styled-components';
@@ -17,12 +18,7 @@ const App = (): JSX.Element => {
 		'bastard'
 	];
 
-	const chatCmds: {
-		cmd: string;
-		name: string;
-		param: string;
-		options?: unknown;
-	}[] = [
+	const chatCmds: punishmentType[] = [
 		{
 			name: 'ban',
 			cmd: '/ban',
@@ -38,12 +34,31 @@ const App = (): JSX.Element => {
 		}
 	];
 
+	const chatRanks = [
+		{
+			name: 'Admin',
+			cmdAccess: ['/mute', '/ban']
+		},
+		{
+			name: 'Moderator',
+			cmdAccess: ['/mute']
+		},
+		{
+			name: 'User',
+			cmdAccess: []
+		}
+	];
+
 	return (
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
 				<Username />
-				<Chat profanityWords={profanityWords} cmds={chatCmds} />
+				<Chat
+					profanityWords={profanityWords}
+					cmds={chatCmds}
+					ranks={chatRanks}
+				/>
 			</ThemeProvider>
 		</>
 	);

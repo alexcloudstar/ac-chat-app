@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import {
 	getLocalStorageItem,
 	setLocalStorageItem
@@ -7,19 +7,25 @@ import { TextareaWrapper } from './style';
 import { TextareaProps } from './types';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize/TextareaAutosize';
 import { io } from 'socket.io-client';
+import format from 'date-fns/format';
+import addMinutes from 'date-fns/addMinutes';
 
 const socket = io('http://localhost:4000');
 
 const Textarea: FC<TextareaProps> = ({
 	message,
 	setMessage,
-	cmds
+	cmds,
+	ranks
 }): JSX.Element => {
+	const myRank = JSON.parse(getLocalStorageItem('staff'));
+
 	const onChangeHandler = useCallback(
 		(e) => {
 			setMessage(e.target.value);
 
-			if (e.target.value.includes('/ban')) return;
+			// TODO stop show typing when user use any cmd
+			// TODO as /ban /mute etc
 
 			setTimeout(
 				() => socket.emit('typing', getLocalStorageItem('username')),
@@ -37,16 +43,31 @@ const Textarea: FC<TextareaProps> = ({
 			const blackListArr = JSON.parse(blackList);
 			const punishCmd = message.split(' ');
 
-			const punishment = {
-				username: punishCmd[1],
-				punishment: punishCmd[0]
-			};
+			if (!myRank && punishCmd[0]) return alert("You don't have access ");
 
-			blackListArr?.push(punishment);
+			myRank?.map((rank) => {
+				const findedRanks = ranks.find((r) => r.name === rank.rank);
+				findedRanks.cmdAccess.map((cmd) => {
+					if (punishCmd[0] !== cmd) return alert("You don't have access ");
 
-			setLocalStorageItem('blackList', JSON.stringify(blackListArr));
+					const minutesToAdd = parseInt(punishCmd[2]);
+					const currentDate = new Date();
+					const punishEnd = addMinutes(currentDate, minutesToAdd);
 
-			socket.emit('punish', blackListArr);
+					const punishment = {
+						username: punishCmd[1],
+						punishment: punishCmd[0],
+						time: punishCmd[2],
+						timestamp: format(punishEnd, 'yyyy/MM/dd hh:mm:a')
+					};
+
+					blackListArr?.push(punishment);
+
+					setLocalStorageItem('blackList', JSON.stringify(blackListArr));
+
+					socket.emit('punish', blackListArr);
+				});
+			});
 		}
 	};
 

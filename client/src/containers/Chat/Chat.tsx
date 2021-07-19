@@ -10,8 +10,8 @@ import { io } from 'socket.io-client';
 
 const socket = io('http://localhost:4000');
 
-const Chat: FC<ChatProps> = ({ profanityWords, cmds }): JSX.Element => {
-	const t = [];
+const Chat: FC<ChatProps> = ({ profanityWords, cmds, ranks }): JSX.Element => {
+	const blackList = getLocalStorageItem('blackList');
 	useEffect(() => {
 		socket.on('punish', (data) => {
 			setLocalStorageItem('blackList', JSON.stringify(data));
@@ -23,17 +23,21 @@ const Chat: FC<ChatProps> = ({ profanityWords, cmds }): JSX.Element => {
 	}, []);
 
 	useEffect(() => {
-		!getLocalStorageItem('blackList') &&
-			setLocalStorageItem('blackList', JSON.stringify([]));
-	}, []);
+		!blackList && setLocalStorageItem('blackList', JSON.stringify([]));
+	}, [blackList]);
+
+	const myPunishment = JSON.parse(blackList)?.filter(
+		(list) => list.username === getLocalStorageItem('username')
+	);
+
+	if (myPunishment?.length > 0) return <PunishmentWarning />;
 
 	return (
 		<ChatWrapper>
-			<PunishmentWarning />
 			<Header headline="Chat Header" />
 			<Suspense fallback={<div>Loading...</div>}>
 				<Body profanityWords={profanityWords} />
-				<Footer cmds={cmds} />
+				<Footer cmds={cmds} ranks={ranks} />
 			</Suspense>
 		</ChatWrapper>
 	);

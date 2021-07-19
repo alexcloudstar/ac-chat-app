@@ -1,5 +1,6 @@
 import { messageType } from 'src/shared/types/messagesTypes';
 
 export type TextareaProps = {
-	cmds: any;
+	cmds?: any[];
+	ranks?: any[];
 } & messageType;
