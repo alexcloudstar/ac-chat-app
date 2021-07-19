@@ -18,15 +18,12 @@ const PunishmentWarning = (): JSX.Element => {
 	};
 
 	const blackList = JSON.parse(getLocalStorageItem('blackList'));
-	useEffect(() => {
-		setLocalStorageItem('blackList', JSON.stringify(blackList));
-	}, [blackList]);
 
 	const isBlacklisted = blackList?.some((punishment) => {
 		return punishment.username === getLocalStorageItem('username');
 	});
 
-	const myPunishment = blackList.filter(
+	const myPunishment = blackList?.filter(
 		(list) => list.username === getLocalStorageItem('username')
 	);
 
@@ -34,13 +31,13 @@ const PunishmentWarning = (): JSX.Element => {
 		<Dialog
 			onClose={handleClose}
 			aria-labelledby="customized-dialog-title"
-			open={isBlacklisted}
+			open={!!isBlacklisted}
 		>
 			<DialogTitle id="customized-dialog-title">Punishment notice</DialogTitle>
 			<DialogContent dividers>
 				<Typography gutterBottom>
-					You got <strong>{myPunishment[0]?.punishment}</strong> due to rules
-					violation
+					You got <strong>{myPunishment && myPunishment[0]?.punishment}</strong>{' '}
+					due to rules violation
 				</Typography>
 			</DialogContent>
 			<DialogActions>

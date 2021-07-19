@@ -18,4 +18,8 @@ io.on('connection', socket => {
   socket.on('typing', data => {
     socket.broadcast.emit('typing', data);
   });
+
+  socket.on('punish', data => {
+    io.sockets.emit('punish', data);
+  });
 });
