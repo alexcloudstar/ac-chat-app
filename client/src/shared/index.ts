@@ -7,11 +7,15 @@ export {
 	Avatar,
 	Emojis,
 	SendBtn,
-	Typing
+	Typing,
+	PunishmentWarning
 } from './components';
 export type {
+	messageType,
 	messageStateType,
 	messagesStateType,
 	profanityWords,
-	messagesStateTypeWithMessageStateType
+	messagesStateTypeWithMessageStateType,
+	punishmentType,
+	rankType
 } from './types';

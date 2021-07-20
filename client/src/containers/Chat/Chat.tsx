@@ -1,14 +1,43 @@
-import React, { FC, memo, Suspense } from 'react';
+import React, { FC, memo, Suspense, useEffect } from 'react';
 import { ChatWrapper } from './style';
-import { Body, Header, Footer, profanityWords } from 'src/shared';
+import { Body, Header, Footer, PunishmentWarning } from 'src/shared';
+import { ChatProps } from './types';
+import {
+	getLocalStorageItem,
+	setLocalStorageItem
+} from 'src/utils/localStorage';
+import { io } from 'socket.io-client';
 
-const Chat: FC<profanityWords> = ({ profanityWords }): JSX.Element => {
+const socket = io('http://localhost:4000');
+
+const Chat: FC<ChatProps> = ({ profanityWords, cmds, ranks }): JSX.Element => {
+	const blackList = getLocalStorageItem('blackList');
+	useEffect(() => {
+		socket.on('punish', (data) => {
+			setLocalStorageItem('blackList', JSON.stringify(data));
+		});
+
+		return () => {
+			socket.off('punish');
+		};
+	}, []);
+
+	useEffect(() => {
+		!blackList && setLocalStorageItem('blackList', JSON.stringify([]));
+	}, [blackList]);
+
+	const myPunishment = JSON.parse(blackList)?.filter(
+		(list) => list.username === getLocalStorageItem('username')
+	);
+
+	if (myPunishment?.length > 0) return <PunishmentWarning />;
+
 	return (
 		<ChatWrapper>
 			<Header headline="Chat Header" />
 			<Suspense fallback={<div>Loading...</div>}>
 				<Body profanityWords={profanityWords} />
-				<Footer />
+				<Footer cmds={cmds} ranks={ranks} />
 			</Suspense>
 		</ChatWrapper>
 	);
