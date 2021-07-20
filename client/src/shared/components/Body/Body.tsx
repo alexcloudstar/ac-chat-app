@@ -19,7 +19,7 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 	>([]);
 
 	useEffect(() => {
-		socket.on('chat', (data) => {
+		socket.once('chat', (data) => {
 			setMessages([...messages, data]);
 		});
 

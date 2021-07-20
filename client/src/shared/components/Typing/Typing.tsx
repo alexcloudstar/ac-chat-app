@@ -22,10 +22,6 @@ const Typing: FC<TypingProps> = ({
 	}, []);
 
 	useEffect(() => {
-		socket.on('chat', (data) => {
-			setMessages([...messageState, data]);
-		});
-
 		return () => {
 			socket.off('chat');
 

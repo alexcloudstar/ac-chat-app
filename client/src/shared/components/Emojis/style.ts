@@ -13,6 +13,8 @@ export const EmojisWrapper = styled(Box)`
 
 	aside {
 		width: 90%;
+		bottom: 0;
+		position: absolute;
 	}
 
 	span {
