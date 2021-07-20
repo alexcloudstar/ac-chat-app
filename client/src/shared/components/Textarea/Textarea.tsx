@@ -33,9 +33,7 @@ const Textarea: FC<TextareaProps> = ({
 	);
 
 	const onKeyDown = (e) => {
-		if (e.code === 'Enter') {
-			e.preventDefault();
-
+		if ((e.ctrlKey || e.metaKey) && (e.keyCode === 13 || e.keyCode === 10)) {
 			const blackList = getLocalStorageItem('blackList');
 			const blackListArr = JSON.parse(blackList);
 			const punishCmd = message.split(' ');
@@ -43,9 +41,8 @@ const Textarea: FC<TextareaProps> = ({
 				if (!myRank && punishCmd[0] === cmd.cmd)
 					return alert("You don't have access");
 			});
-			console.log(ranks);
+
 			myRank?.map((rank) => {
-				console.log(rank);
 				const findedRanks = ranks.find((r) => r.name === rank.rank);
 				findedRanks.cmdAccess.map((cmd) => {
 					if (punishCmd[0] !== cmd) return alert("You don't have access");
@@ -68,6 +65,21 @@ const Textarea: FC<TextareaProps> = ({
 					socket.emit('punish', blackListArr);
 				});
 			});
+		}
+
+		if (!e.ctrlKey && !e.metaKey && e.keyCode === 13) {
+			e.preventDefault();
+
+			setTimeout(
+				() =>
+					socket.emit('chat', {
+						message,
+						username: getLocalStorageItem('username')
+					}),
+				500
+			);
+
+			setMessage('');
 		}
 	};
 
