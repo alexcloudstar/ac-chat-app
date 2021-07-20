@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { getLocalStorageItem } from 'src/utils/localStorage';
 import { TypingProps } from './types';
@@ -41,4 +41,4 @@ const Typing: FC<TypingProps> = ({
 	);
 };
 
-export default Typing;
+export default memo(Typing);

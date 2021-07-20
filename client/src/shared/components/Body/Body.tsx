@@ -34,13 +34,12 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 	return (
 		<BodyWrapper>
 			{messages?.map(({ username, message }: messageStateType) => (
-				<Fragment key={uuidv4()}>
-					<Message
-						username={username}
-						message={message}
-						profanityWords={profanityWords}
-					/>
-				</Fragment>
+				<Message
+					key={uuidv4()}
+					username={username}
+					message={message}
+					profanityWords={profanityWords}
+				/>
 			))}
 
 			<Typing messageState={messages} setMessages={setMessages} />
