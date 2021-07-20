@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
+import { getLocalStorageItem } from 'src/utils/localStorage';
 import { TypingProps } from './types';
 
 const socket = io('http://localhost:4000');
@@ -15,26 +16,24 @@ const Typing: FC<TypingProps> = ({
 
 	useEffect(() => {
 		socket.on('typing', (data) => {
-			setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
+			data !== getLocalStorageItem('username') &&
+				setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
 		});
-
-		return () => {
-			socket.off('typing');
-		};
 	}, []);
 
 	useEffect(() => {
 		socket.on('chat', (data) => {
 			setMessages([...messageState, data]);
-			setIsTyping({ isTyping: false });
 		});
 
 		return () => {
 			socket.off('chat');
+
+			setIsTyping({ isTyping: false });
 		};
 	}, [messageState, setMessages]);
 
-	return isTyping.isTyping ? <div>Someone is typing</div> : <></>;
+	return isTyping.isTyping ? <div>{isTyping.username} is typing</div> : <></>;
 };
 
 export default Typing;

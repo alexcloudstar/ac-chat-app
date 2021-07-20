@@ -4,7 +4,7 @@ import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { v4 as uuidv4 } from 'uuid';
 import { io } from 'socket.io-client';
-import { messagesStateTypeWithMessageStateType } from 'src/shared';
+import { messagesStateTypeWithMessageStateType, Typing } from 'src/shared';
 const Message = React.lazy(() => import('../Message/Message'));
 
 const socket = io('http://localhost:4000');
@@ -13,11 +13,6 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 	const [messages, setMessages] = useState<
 		messagesStateTypeWithMessageStateType[]
 	>([]);
-
-	const [isTyping, setIsTyping] = useState<{
-		isTyping: boolean;
-		username?: string;
-	}>({ isTyping: false, username: 'Guest' });
 
 	useEffect(() => {
 		socket.on('chat', (data) => {
@@ -28,10 +23,6 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 			socket.off('chat');
 		};
 	}, [messages, setMessages]);
-
-	useMemo(() => {
-		setIsTyping({ isTyping: false });
-	}, []);
 
 	return (
 		<BodyWrapper>
@@ -46,9 +37,7 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 				)
 			)}
 
-			{/* {isTyping.isTyping && (
-				<Typing messageState={messageState} setMessages={setMessages} />
-			)} */}
+			<Typing messageState={messages} setMessages={setMessages} />
 		</BodyWrapper>
 	);
 };

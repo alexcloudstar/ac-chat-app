@@ -1,6 +1,6 @@
 {
 	"name": "react-typescript-webpack-eslint-prettier",
-	"version": "0.0.38",
+	"version": "0.0.40",
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
@@ -40,6 +40,7 @@
 	"dependencies": {
 		"@material-ui/core": "^4.12.0",
 		"@material-ui/icons": "^4.11.2",
+		"date-fns": "^2.22.1",
 		"emoji-picker-react": "^3.4.8",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",

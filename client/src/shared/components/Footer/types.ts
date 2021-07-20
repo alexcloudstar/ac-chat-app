@@ -1,3 +1,6 @@
+import { punishmentType, rankType } from 'src/shared/types';
+
 export type FooterProps = {
-	props?: unknown;
+	cmds?: punishmentType[];
+	ranks?: rankType[];
 };
