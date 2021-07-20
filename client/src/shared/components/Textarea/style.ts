@@ -15,5 +15,6 @@ export const TextareaWrapper = styled(Box)`
 		padding: 5px 10px;
 		font-family: ${({ theme }) => theme.typography.fontFamily.secondary};
 		font-size: ${({ theme }) => pxToRem(theme.typography.sizes.md)};
+		background: ${({ theme }) => theme.palette.common.white};
 	}
 `;

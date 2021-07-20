@@ -1,12 +1,16 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Chat } from 'src/containers';
 import { Username } from 'src/shared/components/Username';
 import GlobalStyles from 'src/Theme/globalStyles';
-import { defaultTheme } from 'src/Theme/theme';
-import { ThemeProvider } from 'styled-components';
+import * as themes from 'src/Theme/theme';
+
+import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { punishmentType, rankType } from '../shared';
+import ThemeSelector from '../shared/components/ThemeSelector/ThemeSelector';
+import { getLocalStorageItem } from '../utils/localStorage';
 
 const App = (): JSX.Element => {
+	const [theme, setTheme] = useState<DefaultTheme>(themes.defaultTheme);
 	const profanityWords: string[] = [
 		'nigga',
 		'die',
@@ -49,9 +53,14 @@ const App = (): JSX.Element => {
 		}
 	];
 
+	useEffect(() => {
+		if (getLocalStorageItem('theme') === 'dark') setTheme(themes.darkTheme);
+		if (getLocalStorageItem('theme') === 'purple') setTheme(themes.purpleTheme);
+	}, []);
+
 	return (
 		<>
-			<ThemeProvider theme={defaultTheme}>
+			<ThemeProvider theme={theme}>
 				<GlobalStyles />
 				<Username />
 				<Chat
@@ -60,6 +69,7 @@ const App = (): JSX.Element => {
 					ranks={chatRanks}
 				/>
 			</ThemeProvider>
+			<ThemeSelector setTheme={setTheme} />
 		</>
 	);
 };
