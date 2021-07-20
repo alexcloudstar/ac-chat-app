@@ -8,3 +8,4 @@ export { Emojis } from './Emojis';
 export { SendBtn } from './SendBtn';
 export { Typing } from './Typing';
 export { PunishmentWarning } from './PunishmentWarning';
+export { ThemeSelector } from './ThemeSelector';

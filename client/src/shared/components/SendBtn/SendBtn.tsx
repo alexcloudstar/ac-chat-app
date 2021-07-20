@@ -1,7 +1,8 @@
 import React, { FC, memo, useCallback } from 'react';
 import { SendBtnProps } from './types';
+import { StyledBtn } from './style';
+
 import SendIcon from '@material-ui/icons/Send';
-import Button from '@material-ui/core/Button/Button';
 import { io } from 'socket.io-client';
 import { getLocalStorageItem } from 'src/utils/localStorage';
 
@@ -22,7 +23,7 @@ const SendBtn: FC<SendBtnProps> = ({ disabled, message, setMessage }) => {
 	}, [message, setMessage]);
 
 	return (
-		<Button
+		<StyledBtn
 			variant="contained"
 			color="primary"
 			endIcon={<SendIcon />}
@@ -30,7 +31,7 @@ const SendBtn: FC<SendBtnProps> = ({ disabled, message, setMessage }) => {
 			disabled={disabled}
 		>
 			Send
-		</Button>
+		</StyledBtn>
 	);
 };
 

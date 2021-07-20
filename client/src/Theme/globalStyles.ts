@@ -14,6 +14,11 @@ body {
     height: 100vh;
 }
 
+body {
+  transition: all 0.3s ease;
+  background: ${({ theme }) => theme.palette.primary.bodyBg}
+}
+
 #root {
     width: 100%;
     height: 100%;

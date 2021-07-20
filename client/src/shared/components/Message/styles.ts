@@ -21,7 +21,7 @@ export const MessageWrapper = styled(Box)<{ username: string }>`
 		color: ${({ username }) =>
 			username === getLocalStorageItem('username')
 				? ({ theme }) => theme.palette.common.white
-				: ({ theme }) => theme.palette.common.black};
+				: ({ theme }) => theme.palette.primary.contrast};
 		direction: ${({ username }) =>
 			username === getLocalStorageItem('username') ? 'ltr' : 'ltr'};
 		justify-content: ${({ username }) =>

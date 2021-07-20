@@ -10,10 +10,4 @@ export const FooterWrapper = styled(Box)`
 	align-items: center;
 	position: relative;
 	border-top: 1px solid ${({ theme }) => theme.palette.primary.main};
-
-	button {
-		height: 100%;
-		border-bottom-right-radius: 0;
-		border-top-right-radius: 0;
-	}
 `;

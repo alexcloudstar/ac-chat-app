@@ -24,9 +24,6 @@ const Textarea: FC<TextareaProps> = ({
 		(e) => {
 			setMessage(e.target.value);
 
-			// TODO stop show typing when user use any cmd
-			// TODO as /ban /mute etc
-
 			setTimeout(
 				() => socket.emit('typing', getLocalStorageItem('username')),
 				500
@@ -44,10 +41,11 @@ const Textarea: FC<TextareaProps> = ({
 			const punishCmd = message.split(' ');
 			cmds.map((cmd) => {
 				if (!myRank && punishCmd[0] === cmd.cmd)
-					return alert("You don't have access1");
+					return alert("You don't have access");
 			});
-
+			console.log(ranks);
 			myRank?.map((rank) => {
+				console.log(rank);
 				const findedRanks = ranks.find((r) => r.name === rank.rank);
 				findedRanks.cmdAccess.map((cmd) => {
 					if (punishCmd[0] !== cmd) return alert("You don't have access");
