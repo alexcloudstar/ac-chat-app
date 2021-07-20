@@ -24,7 +24,7 @@ const Message: FC<MessageProps> = ({
 				<Avatar username={username} />
 				<p>
 					<span>
-						{!username ? 'Guest' : username} : {checkMessage(message)}
+						{!username ? 'Guest' : username}: {checkMessage(message)}
 					</span>
 				</p>
 			</div>
