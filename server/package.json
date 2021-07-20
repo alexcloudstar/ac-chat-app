@@ -14,7 +14,8 @@
   ],
   "engines": {
     "node": "16.3.0",
-    "npm": "7.15.1"
+    "npm": "7.15.1",
+    "yarn": "1.22.10"
   },
   "bugs": {
     "url": "https://github.com/ac-test-org/chat-app/issues",
