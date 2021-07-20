@@ -1,8 +1,33 @@
 {
-	"name": "react-typescript-webpack-eslint-prettier",
-	"version": "0.0.71",
+	"name": "kitchat",
+	"version": "1.0.0",
+	"description": "A real time app messaging",
+	"homepage": "/",
 	"main": "index.js",
 	"license": "MIT",
+	"keywords": [
+		"chat",
+		"chatapp",
+		"sockets",
+		"real-time-app-messaging",
+		"realtime-app-message"
+	],
+	"engines": {
+		"node": "16.3.0",
+		"npm": "7.15.1"
+	},
+	"bugs": {
+		"url": "https://github.com/ac-test-org/chat-app/issues",
+		"email": "contact@alexcloudstar.com"
+	},
+	"author": {
+		"name": "Alex Cloudstar",
+		"email": "contact@alexcloudstar.com",
+		"url": "https://alexcloudstar.com"
+	},
+	"repository": {
+		"url": "https://github.com/ac-test-org/chat-app"
+	},
 	"scripts": {
 		"start": "webpack-cli serve --mode=development --env development --open",
 		"start:dev": "webpack-cli serve --mode=development --env development --open --hot --host 192.168.1.111",
