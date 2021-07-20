@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { Chat } from 'src/containers';
 import { Username } from 'src/shared/components/Username';
-import { punishmentType } from 'src/shared/types';
 import GlobalStyles from 'src/Theme/globalStyles';
 import { defaultTheme } from 'src/Theme/theme';
 import { ThemeProvider } from 'styled-components';
+import { punishmentType, rankType } from '../shared';
 
 const App = (): JSX.Element => {
 	const profanityWords: string[] = [
@@ -34,7 +34,7 @@ const App = (): JSX.Element => {
 		}
 	];
 
-	const chatRanks = [
+	const chatRanks: rankType[] = [
 		{
 			name: 'Admin',
 			cmdAccess: ['/mute', '/ban']

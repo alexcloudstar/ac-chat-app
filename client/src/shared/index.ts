@@ -11,8 +11,11 @@ export {
 	PunishmentWarning
 } from './components';
 export type {
+	messageType,
 	messageStateType,
 	messagesStateType,
 	profanityWords,
-	messagesStateTypeWithMessageStateType
+	messagesStateTypeWithMessageStateType,
+	punishmentType,
+	rankType
 } from './types';

@@ -1,6 +1,6 @@
-import { messageType } from 'src/shared/types/messagesTypes';
+import { punishmentType, rankType, messageType } from 'src/shared/types';
 
 export type TextareaProps = {
-	cmds?: any[];
-	ranks?: any[];
+	cmds?: punishmentType[];
+	ranks?: rankType[];
 } & messageType;

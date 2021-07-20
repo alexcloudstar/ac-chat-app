@@ -1,7 +1,6 @@
-import { profanityWords } from 'src/shared';
+import { profanityWords, rankType, punishmentType } from 'src/shared';
 
 export type ChatProps = {
-	// TODO: Fix Type
-	cmds?: any[];
-	ranks?: any[];
+	cmds?: punishmentType[];
+	ranks?: rankType[];
 } & profanityWords;
