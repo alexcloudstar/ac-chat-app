@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, memo, useCallback, useRef } from 'react';
 import { MessageWrapper } from './styles';
 import { MessageProps } from './types';
 import { Avatar } from 'src/shared';
@@ -14,6 +14,7 @@ const Message: FC<MessageProps> = ({
 				? message.replace(message, '****')
 				: message;
 		},
+
 		[profanityWords]
 	);
 
