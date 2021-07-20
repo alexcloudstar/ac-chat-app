@@ -40,11 +40,11 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 						message={message}
 						profanityWords={profanityWords}
 					/>
-					<div ref={messageRef}></div>
 				</Fragment>
 			))}
 
 			<Typing messageState={messages} setMessages={setMessages} />
+			<div ref={messageRef}></div>
 		</BodyWrapper>
 	);
 };
