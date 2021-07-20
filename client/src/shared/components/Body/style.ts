@@ -7,4 +7,5 @@ export const BodyWrapper = styled(Box)`
 	overflow-y: scroll;
 	position: relative;
 	padding-bottom: 35px;
+	background: ${({ theme }) => theme.palette.common.white};
 `;

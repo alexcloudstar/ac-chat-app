@@ -13,6 +13,6 @@ export const AvatarWrapper = styled(Box)<{ username: string }>`
 			: ({ theme }) => theme.palette.primary.main};
 	color: ${({ username }) =>
 		username === getLocalStorageItem('username')
-			? ({ theme }) => theme.palette.primary.main
+			? ({ theme }) => theme.palette.primary.contrast
 			: ({ theme }) => theme.palette.primary.secondary};
 `;

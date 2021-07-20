@@ -24,9 +24,6 @@ const Textarea: FC<TextareaProps> = ({
 		(e) => {
 			setMessage(e.target.value);
 
-			// TODO stop show typing when user use any cmd
-			// TODO as /ban /mute etc
-
 			setTimeout(
 				() => socket.emit('typing', getLocalStorageItem('username')),
 				500

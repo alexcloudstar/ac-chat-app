@@ -3,10 +3,14 @@ import 'styled-components';
 interface IPalette {
 	main: string;
 	secondary: string;
+	bodyBg: string;
+	contrast: string;
 }
 
 declare module 'styled-components' {
 	export interface DefaultTheme {
+		id: string;
+		name: string;
 		typography: {
 			fontFamily: {
 				main: string;

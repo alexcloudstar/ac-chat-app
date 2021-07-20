@@ -8,7 +8,8 @@ export {
 	Emojis,
 	SendBtn,
 	Typing,
-	PunishmentWarning
+	PunishmentWarning,
+	ThemeSelector
 } from './components';
 export type {
 	messageType,
