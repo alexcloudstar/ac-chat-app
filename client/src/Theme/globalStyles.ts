@@ -15,6 +15,7 @@ body {
 }
 
 body {
+  transition: all 0.3s ease;
   background: ${({ theme }) => theme.palette.primary.bodyBg}
 }
 

@@ -117,7 +117,7 @@ export const purpleTheme: DefaultTheme = {
 			white: '#e5e5e5'
 		},
 		primary: {
-			bodyBg: '#fafafa',
+			bodyBg: '#8a7f9f',
 			main: '#805eb8',
 			secondary: '#f70000',
 			contrast: '#fff'
