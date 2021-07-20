@@ -1,0 +1,44 @@
+{
+  "name": "kitchat",
+  "version": "1.0.0",
+  "description": "A real time app messaging",
+  "homepage": "/",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "chat",
+    "chatapp",
+    "sockets",
+    "real-time-app-messaging",
+    "realtime-app-message"
+  ],
+  "engines": {
+    "node": "16.3.0",
+    "npm": "7.15.1",
+    "yarn": "1.22.10"
+  },
+  "bugs": {
+    "url": "https://github.com/ac-test-org/chat-app/issues",
+    "email": "contact@alexcloudstar.com"
+  },
+  "author": {
+    "name": "Alex Cloudstar",
+    "email": "contact@alexcloudstar.com",
+    "url": "https://alexcloudstar.com"
+  },
+  "repository": {
+    "url": "https://github.com/ac-test-org/chat-app"
+  },
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon server",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}

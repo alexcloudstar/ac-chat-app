@@ -1,0 +1,77 @@
+{
+	"name": "kitchat",
+	"version": "1.0.0",
+	"description": "A real time app messaging",
+	"homepage": "/",
+	"main": "index.js",
+	"license": "MIT",
+	"keywords": [
+		"chat",
+		"chatapp",
+		"sockets",
+		"real-time-app-messaging",
+		"realtime-app-message"
+	],
+	"engines": {
+		"node": "16.3.0",
+		"npm": "7.15.1",
+		"yarn": "1.22.10"
+	},
+	"bugs": {
+		"url": "https://github.com/ac-test-org/chat-app/issues",
+		"email": "contact@alexcloudstar.com"
+	},
+	"author": {
+		"name": "Alex Cloudstar",
+		"email": "contact@alexcloudstar.com",
+		"url": "https://alexcloudstar.com"
+	},
+	"repository": {
+		"url": "https://github.com/ac-test-org/chat-app"
+	},
+	"scripts": {
+		"start": "webpack-cli serve --mode=development --env development --open",
+		"start:dev": "webpack-cli serve --mode=development --env development --open --hot --host 192.168.1.111",
+		"build": "webpack --mode=production --env production --progress",
+		"lint": "eslint './src/**/*.{ts,tsx}'",
+		"lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
+	},
+	"devDependencies": {
+		"@types/node": "^16.0.0",
+		"@types/react": "^17.0.13",
+		"@types/react-dom": "^17.0.8",
+		"@types/styled-components": "^5.1.11",
+		"@types/webpack": "^5.28.0",
+		"@types/webpack-dev-server": "^3.11.5",
+		"@typescript-eslint/eslint-plugin": "^4.28.2",
+		"@typescript-eslint/parser": "^4.28.2",
+		"dotenv": "^10.0.0",
+		"eslint": "^7.30.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.23.4",
+		"eslint-plugin-prettier": "^3.4.0",
+		"eslint-plugin-react": "^7.24.0",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"fork-ts-checker-webpack-plugin": "^6.2.12",
+		"html-webpack-plugin": "^5.3.2",
+		"prettier": "^2.3.2",
+		"ts-loader": "^9.2.3",
+		"ts-node": "^10.0.0",
+		"tsconfig-paths-webpack-plugin": "^3.5.1",
+		"typescript": "^4.3.5",
+		"webpack": "^5.42.1",
+		"webpack-cli": "^4.7.2",
+		"webpack-dev-server": "^3.11.2"
+	},
+	"dependencies": {
+		"@material-ui/core": "^4.12.0",
+		"@material-ui/icons": "^4.11.2",
+		"date-fns": "^2.22.1",
+		"emoji-picker-react": "^3.4.8",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"socket.io-client": "^4.1.2",
+		"styled-components": "^5.3.0",
+		"uuid": "^8.3.2"
+	}
+}
