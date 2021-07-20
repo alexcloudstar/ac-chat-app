@@ -13,7 +13,7 @@ const Message = React.lazy(() => import('../Message/Message'));
 const socket = io('http://localhost:4000');
 
 const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
-	const messageRef = useRef<any>(null);
+	const messageRef = useRef<HTMLDivElement | null>(null);
 
 	const [messages, setMessages] = useState<
 		messagesStateTypeWithMessageStateType[]
