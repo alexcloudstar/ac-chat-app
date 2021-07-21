@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useRef, useState, Fragment } from 'react';
+import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import { BodyWrapper } from './style';
 import { BodyProps } from './types';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,7 +20,7 @@ const Body: FC<BodyProps> = ({ profanityWords }): JSX.Element => {
 	>([]);
 
 	useEffect(() => {
-		socket.once('chat', (data) => {
+		socket.once('chat', (data: messagesStateTypeWithMessageStateType) => {
 			setMessages([...messages, data]);
 		});
 
