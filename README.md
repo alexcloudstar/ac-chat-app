@@ -26,8 +26,8 @@
 ## Get started
 
 1. git clone repo:
-   - ssh `git@github.com:ac-test-org/kschat.git`
-   - https: `https://github.com/ac-test-org/kschat.git`
+   - ssh `git clone git@github.com:ac-test-org/kschat.git`
+   - https: `git clone https://github.com/ac-test-org/kschat.git`
 2. cd server & client and run `yarn/npm`
 3. cd server & client and run `yarn/npm start`
 4. Enjoy
