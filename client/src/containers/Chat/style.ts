@@ -8,6 +8,6 @@ export const ChatWrapper = styled(Box)`
 	font-family: ${({ theme }) => theme.typography.fontFamily.secondary};
 
 	@media (max-width: 767px) {
-		width: auto;
+		width: 350px;
 	} ;
 `;

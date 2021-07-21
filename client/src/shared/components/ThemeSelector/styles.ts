@@ -4,8 +4,10 @@ import { pxToRem } from 'src/utils/pxToRem';
 
 export const ThemeSelectorWrapper = styled(Box)`
 	display: flex;
-	position: absolute;
-	bottom: 20px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
 `;
 
 export const ThemeSelectorEl = styled(Box)<{ theme: string }>`
