@@ -70,6 +70,8 @@ const Textarea: FC<TextareaProps> = ({
 		if (!e.ctrlKey && !e.metaKey && e.keyCode === 13) {
 			e.preventDefault();
 
+			if (e.target.value === '') return;
+
 			setTimeout(
 				() =>
 					socket.emit('chat', {
