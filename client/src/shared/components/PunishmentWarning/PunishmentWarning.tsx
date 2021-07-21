@@ -12,26 +12,30 @@ import {
 import format from 'date-fns/format';
 import isAfter from 'date-fns/isAfter';
 import { io } from 'socket.io-client';
+import { myPunishmentType } from 'src/shared/types/myPunishmentType';
 
 const socket = io('http://localhost:4000');
 
 const PunishmentWarning = (): JSX.Element => {
-	const blackList = JSON.parse(getLocalStorageItem('blackList'));
+	const blackList: myPunishmentType[] = JSON.parse(
+		getLocalStorageItem('blackList')
+	);
 
-	const isBlacklisted = blackList?.some((punishment) => {
+	const isBlacklisted: boolean = blackList?.some((punishment) => {
 		return punishment.username === getLocalStorageItem('username');
 	});
 
-	const myPunishment = blackList?.filter(
+	const myPunishment: myPunishmentType[] = blackList?.filter(
 		(list) => list.username === getLocalStorageItem('username')
 	);
 
-	const currentTime = format(new Date(), 'yyyy/MM/dd hh:mm:a');
-	const myPunishmentTimestamp = myPunishment && myPunishment[0]?.timestamp;
+	const currentTime: string = format(new Date(), 'yyyy/MM/dd hh:mm:a');
+	const myPunishmentTimestamp: string =
+		myPunishment && myPunishment[0]?.timestamp;
 
 	useEffect(() => {
 		if (isAfter(new Date(currentTime), new Date(myPunishmentTimestamp))) {
-			const filteredArr = blackList.filter(
+			const filteredArr: myPunishmentType[] = blackList.filter(
 				(list) => list.username !== myPunishment[0].username
 			);
 

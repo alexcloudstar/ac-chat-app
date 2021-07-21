@@ -6,8 +6,8 @@ import useOutsideClick from 'src/shared/hooks/useOutsideClick';
 
 const Emojis: FC<EmojiProps> = ({ message, setMessage }) => {
 	const [_, setChosenEmoji] = useState(null);
-	const [isOpen, setIsOpen] = useState(false);
-	const emojiRef = useRef(null);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const emojiRef = useRef<HTMLDivElement | null>(null);
 
 	const onEmojiClick = useCallback(
 		(_, emojiObject) => {

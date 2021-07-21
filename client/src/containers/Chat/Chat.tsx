@@ -7,11 +7,12 @@ import {
 	setLocalStorageItem
 } from 'src/utils/localStorage';
 import { io } from 'socket.io-client';
+import { myPunishmentType } from 'src/shared/types/myPunishmentType';
 
 const socket = io('http://localhost:4000');
 
 const Chat: FC<ChatProps> = ({ profanityWords, cmds, ranks }): JSX.Element => {
-	const blackList = getLocalStorageItem('blackList');
+	const blackList: string = getLocalStorageItem('blackList');
 	useEffect(() => {
 		socket.on('punish', (data) => {
 			setLocalStorageItem('blackList', JSON.stringify(data));
@@ -26,7 +27,7 @@ const Chat: FC<ChatProps> = ({ profanityWords, cmds, ranks }): JSX.Element => {
 		!blackList && setLocalStorageItem('blackList', JSON.stringify([]));
 	}, [blackList]);
 
-	const myPunishment = JSON.parse(blackList)?.filter(
+	const myPunishment: myPunishmentType[] = JSON.parse(blackList)?.filter(
 		(list) => list.username === getLocalStorageItem('username')
 	);
 

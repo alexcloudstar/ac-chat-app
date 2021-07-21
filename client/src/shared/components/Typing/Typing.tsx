@@ -16,7 +16,7 @@ const Typing: FC<TypingProps> = ({
 	}>({ isTyping: false, username: 'Guest' });
 
 	useEffect(() => {
-		socket.on('typing', (data) => {
+		socket.on('typing', (data: string) => {
 			data !== getLocalStorageItem('username') &&
 				setIsTyping({ isTyping: true, username: !data ? 'Guest' : data });
 		});
