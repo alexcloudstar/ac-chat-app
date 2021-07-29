@@ -38,7 +38,7 @@ For the client side app is using a `webpack 5` with `TS` boilerplate
 [https://github.com/alexcloudstar/react-ts-webpack](https://github.com/alexcloudstar/react-ts-webpack)
 The app is free, but don't forget to star, also feel free to clone, fork and do whatever you want with it.
 
-<h5>For any issues please refer to:</h5> **[https://github.com/ac-test-org/kschat/issues](https://github.com/ac-test-org/kschat/issues)**
+<h5>For any issues please refer to:</h5> **[https://github.com/alexcloudstar/ac-chat-app/issues](https://github.com/alexcloudstar/ac-chat-app/issues)**
 
 📫 How to reach me **contact@alexcloudstar.com**
 
