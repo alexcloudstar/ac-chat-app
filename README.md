@@ -1,3 +1,4 @@
+
 # Chat app
 
 **note:** This project is **NOT** using any state management for React or any DB such as MongoDB, MYSQL etc. It's open source and feel free to use. Actually, i didn't use any db/state management because of this purpose, feel free to fork and modify as your needs. Enjoy!
@@ -38,7 +39,7 @@ For the client side app is using a `webpack 5` with `TS` boilerplate
 [https://github.com/alexcloudstar/react-ts-webpack](https://github.com/alexcloudstar/react-ts-webpack)
 The app is free, but don't forget to star, also feel free to clone, fork and do whatever you want with it.
 
-<h5>For any issues please refer to:</h5> https://github.com/alexcloudstar/ac-chat-app/issues
+**For any issues please refer to:** https://github.com/alexcloudstar/ac-chat-app/issues
 
 📫 How to reach me **contact@alexcloudstar.com**
 
